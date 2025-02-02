@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa"; // Import icons
 
 const Hero = () => {
   return (
@@ -46,6 +47,27 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             Contact Me
+          </motion.a>
+        </div>
+        {/* Social Logos */}
+        <div className="flex justify-center mt-8 space-x-6">
+          <motion.a
+            href="https://github.com/jbalfour5" 
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaGithub className="text-3xl text-zinc-400 hover:text-zinc-50 transition-colors" />
+          </motion.a>
+          <motion.a
+            href="https://linkedin.com/in/ValleyBalfour" 
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaLinkedin className="text-3xl text-zinc-400 hover:text-zinc-50 transition-colors" />
           </motion.a>
         </div>
       </motion.div>
