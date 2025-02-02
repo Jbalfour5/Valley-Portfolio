@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <motion.section
-      className="flex items-center justify-center h-screen bg-zinc-900 text-zinc-50 text-center px-4"
+      className="flex items-center justify-center pt-60 bg-zinc-900 text-zinc-50 text-center px-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -20,7 +20,7 @@ const Hero = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          Hi, I'm Valley!
+          Hi, I'm <span className="text-orange-700/90">Valley</span>!
         </motion.h1>
         <motion.p
           className="text-xl mb-8 text-zinc-400"
