@@ -1,7 +1,9 @@
 import React from "react"
 
+
 //Node Modules
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 //Components
 import Navbar from "./Navbar";
@@ -34,9 +36,14 @@ const Header = () => {
                     <Navbar navOpen={navOpen}/>
                 </div>
 
-                <a href="#contact" className="btn btn-secondary max-md:hidden md:justify-self-end">
+                <motion.a
+                href="#contact"
+                className="btn btn-secondary max-md:hidden md:justify-self-end"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                >
                     Contact Me
-                </a>
+                </motion.a>
 
             </div>
         </header>
