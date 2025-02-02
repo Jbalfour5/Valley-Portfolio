@@ -1,5 +1,6 @@
 import { number } from "prop-types";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+
 
 const About = () => {
     const aboutItems = [
@@ -13,6 +14,24 @@ const About = () => {
         }
       ];
 
+    const [counts, setCounts] = useState(aboutItems.map(() => 0));
+    useEffect(() => {
+        const intervals = aboutItems.map((item, index) => {
+          const increment = item.number / 50;
+          return setInterval(() => {
+            setCounts((prevCounts) => {
+              const newCounts = [...prevCounts];
+              if (newCounts[index] < item.number) {
+                const increment = (item.number - counts[index]) / 20;
+                newCounts[index] = Math.min(newCounts[index] + increment, item.number);
+              }
+              return newCounts;
+            });
+          }, 20);
+        });
+    
+        return () => intervals.forEach((interval) => clearInterval(interval));
+      }, [aboutItems]);
 
     return (
         <section id="about" className="section">
@@ -25,7 +44,7 @@ const About = () => {
                         aboutItems.map(({label, number}, key) => (
                             <div key={key}>
                                 <div className="flex items-center md:mb-2">
-                                    <span className="text-2xl font-semibold md:text-4xl">{number}</span>
+                                    <span className="text-2xl font-semibold md:text-4xl">{Math.round(counts[key])}</span>
                                     <span className="text-orange-700 font-semibold md:text-3xl">+</span>
                                 </div>
                                 <p className="text-sm text-zinc-400">{label}</p>

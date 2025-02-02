@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa"; // Import icons
+import { FaGithub, FaLinkedin, FaItchIo } from "react-icons/fa"; 
 
 const Hero = () => {
   return (
@@ -68,6 +68,15 @@ const Hero = () => {
             whileTap={{ scale: 0.9 }}
           >
             <FaLinkedin className="text-3xl text-zinc-400 hover:text-zinc-50 transition-colors" />
+          </motion.a>
+          <motion.a
+            href="https://vall123.itch.io/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaItchIo className="text-3xl text-zinc-400 hover:text-zinc-50 transition-colors" />
           </motion.a>
         </div>
       </motion.div>
