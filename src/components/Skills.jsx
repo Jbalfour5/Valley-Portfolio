@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Skills = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isSmallDevice, setIsSmallDevice] = useState(window.innerWidth < 640);
+  const skillsPerPage = 4; 
 
   const skillsData = [
     {
@@ -116,16 +119,36 @@ const Skills = () => {
     {
       title: "Unit Testing",
       description: "Testing individual components of software for reliability.",
-      icon: <img src="src/Images/UnitTesting Icon.png" alt="Unit testing icon" className="UnitTestingIcon" width={40} height={40} />,
+      icon: <img src="src/Images/UnitTestingIcon.png" alt="Unit testing icon" className="UnitTestingIcon" width={40} height={40} />,
       tags: ["testing", "software", "reliability"],
     },
   ];
+
 
   const filteredSkills = skillsData.filter(
     (skill) =>
       skill.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       skill.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  
+  const indexOfLastSkill = currentPage * skillsPerPage;
+  const indexOfFirstSkill = indexOfLastSkill - skillsPerPage;
+  const currentSkills = isSmallDevice
+    ? filteredSkills.slice(indexOfFirstSkill, indexOfLastSkill)
+    : filteredSkills;
+
+  
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallDevice(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section id="skills" className="py-8 bg-zinc-900">
@@ -141,7 +164,7 @@ const Skills = () => {
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {filteredSkills.map((skill, index) => (
+          {currentSkills.map((skill, index) => (
             <motion.div
               key={index}
               className="bg-zinc-800 p-4 rounded-lg hover:bg-zinc-700/70 transition-colors"
@@ -168,6 +191,35 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
+        {isSmallDevice && (
+          <div className="flex justify-center mt-6 gap-2">
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-zinc-700 text-zinc-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Previous
+            </button>
+            {Array.from({ length: Math.ceil(filteredSkills.length / skillsPerPage) }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`px-4 py-2 bg-zinc-700 text-zinc-50 rounded-lg ${
+                  currentPage === i + 1 ? "bg-orange-600" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={indexOfLastSkill >= filteredSkills.length}
+              className="px-4 py-2 bg-zinc-700 text-zinc-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
