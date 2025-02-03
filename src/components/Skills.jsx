@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 const Skills = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isSmallDevice, setIsSmallDevice] = useState(window.innerWidth < 640);
-  const skillsPerPage = 4; 
+  const [isMediumOrSmallerDevice, setIsMediumOrSmallerDevice] = useState(
+    window.innerWidth < 1024
+  );
+  const [skillsPerPage, setSkillsPerPage] = useState(
+    window.innerWidth < 1024 ? 4 : 8 
+  );
 
   const skillsData = [
     {
       title: "Java",
-      description: "Object-oriented programming.",
+      description: "Object-oriented programming, Spring Framework.",
       icon: <img src="src/Images/JavaIcon.png" alt="Java programming language icon" className="JavaImg" width={40} height={40} />,
       tags: ["programming", "backend", "android"],
     },
@@ -131,20 +135,21 @@ const Skills = () => {
       skill.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  
+
   const indexOfLastSkill = currentPage * skillsPerPage;
   const indexOfFirstSkill = indexOfLastSkill - skillsPerPage;
-  const currentSkills = isSmallDevice
+  const currentSkills = isMediumOrSmallerDevice
     ? filteredSkills.slice(indexOfFirstSkill, indexOfLastSkill)
     : filteredSkills;
 
-  
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallDevice(window.innerWidth < 640);
+      const isMediumOrSmaller = window.innerWidth < 1024; 
+      setIsMediumOrSmallerDevice(isMediumOrSmaller);
+      setSkillsPerPage(isMediumOrSmaller ? 4 : 8); 
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -163,7 +168,7 @@ const Skills = () => {
             className="p-2 rounded-lg bg-zinc-700 text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {currentSkills.map((skill, index) => (
             <motion.div
               key={index}
@@ -191,7 +196,7 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
-        {isSmallDevice && (
+        {isMediumOrSmallerDevice && (
           <div className="flex justify-center mt-6 gap-2">
             <button
               onClick={() => paginate(currentPage - 1)}
