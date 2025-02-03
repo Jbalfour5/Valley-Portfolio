@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaItchIo } from "react-icons/fa"; 
+import { FaGithub, FaLinkedin, FaItchIo, FaBolt, FaPencilRuler } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -38,7 +38,8 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View My Work
+            View My Skills
+            <FaBolt />
           </motion.a>
           <motion.a
             href="#contact"
@@ -46,7 +47,9 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Contact Me
+            
+            View My Projects
+            <FaPencilRuler />
           </motion.a>
         </div>
         {/* Social Logos */}
