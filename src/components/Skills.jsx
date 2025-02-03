@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const Skills = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const skillsData = [
     {
       title: "Java",
-      description: "Object-oriented programming.",
+      description: "Object-oriented programming, Spring Framework, and Android development.",
       icon: <img src="src/Images/JavaIcon.png" alt="Java programming language icon" className="JavaImg" width={40} height={40} />,
     },
     {
@@ -100,12 +102,26 @@ const Skills = () => {
     },
   ];
 
+  // Filter skills based on search query
+  const filteredSkills = skillsData.filter((skill) =>
+    skill.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <section id="skills" className="py-8 bg-zinc-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl font-bold text-center mb-6 text-zinc-50">Technical Skills</h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-md font-bold text-zinc-50">Technical Skills</h2>
+          <input
+            type="text"
+            placeholder="Search skills..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 rounded-lg bg-zinc-700 text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-600"
+          />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {skillsData.map((skill, index) => (
+          {filteredSkills.map((skill, index) => (
             <motion.div
               key={index}
               className="bg-zinc-800 p-4 rounded-lg hover:bg-zinc-700/70 transition-colors"
