@@ -123,7 +123,7 @@ const Skills = () => {
     {
       title: "Unit Testing",
       description: "Testing individual components of software for reliability.",
-      icon: <img src="src/Images/UnitTestingIcon.png" alt="Unit testing icon" className="UnitTestingIcon" width={40} height={40} />,
+      icon: <img src="src/Images/UnitTesting Icon.png" alt="Unit testing icon" className="UnitTestingIcon" width={40} height={40} />,
       tags: ["testing", "software", "reliability"],
     },
   ];
@@ -198,6 +198,13 @@ const Skills = () => {
         </div>
         {isMediumOrSmallerDevice && (
           <div className="flex justify-center mt-6 gap-2">
+              <motion.div
+              href="https://linkedin.com/in/ValleyBalfour" 
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
@@ -205,17 +212,32 @@ const Skills = () => {
             >
               Previous
             </button>
+            </motion.div>
             {Array.from({ length: Math.ceil(filteredSkills.length / skillsPerPage) }, (_, i) => (
-              <button
-                key={i + 1}
-                onClick={() => paginate(i + 1)}
-                className={`px-4 py-2 bg-zinc-700 text-zinc-50 rounded-lg ${
-                  currentPage === i + 1 ? "bg-orange-600" : ""
-                }`}
-              >
-                {i + 1}
-              </button>
+              <motion.div
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+             <button
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              className={`px-4 py-2 text-zinc-50 rounded-lg ${
+                currentPage === i + 1 ? "bg-slate-50 !important text-zinc-700" : "bg-zinc-700"
+              }`}
+            >
+              {i + 1}
+            </button>
+            </motion.div>
             ))}
+            <motion.div
+              href="https://linkedin.com/in/ValleyBalfour" 
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={indexOfLastSkill >= filteredSkills.length}
@@ -223,7 +245,9 @@ const Skills = () => {
             >
               Next
             </button>
+            </motion.div>
           </div>
+          
         )}
       </div>
     </section>
