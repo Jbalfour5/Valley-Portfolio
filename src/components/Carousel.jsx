@@ -52,7 +52,7 @@ const Carousel = () => {
   ];
 
   return (
-    <div className="py-8 bg-zinc-900">
+    <div className="py-8 bg-zinc-900" id="projects">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold text-zinc-50 mb-6">My Projects</h2>
         <Swiper

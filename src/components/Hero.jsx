@@ -8,6 +8,7 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
+      id="home"
     >
       <motion.div
         className="max-w-2xl"
@@ -33,7 +34,7 @@ const Hero = () => {
         </motion.p>
         <div className="flex justify-center space-x-4">
           <motion.a
-            href="#projects"
+            href="#skills"
             className="btn btn-secondary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -42,7 +43,7 @@ const Hero = () => {
             <FaBolt />
           </motion.a>
           <motion.a
-            href="#contact"
+            href="#projects"
             className="btn bg-zinc-50/10 text-zinc-50 hover:bg-zinc-50/15"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
