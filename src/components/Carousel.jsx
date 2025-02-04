@@ -1,10 +1,10 @@
 import React from "react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 
 const Carousel = () => {
   const projects = [
@@ -12,7 +12,7 @@ const Carousel = () => {
       id: 1,
       title: "Flurrie's Hurry For Snowman",
       description: "Cozy Winter Jam 2025 game submission made in a team of 3. Placed 34th out of 166 submissions.",
-      image: "src/Images/FlurryHurry.png", 
+      image: "src/Images/FlurryHurry.png",
       techstack: [
         { name: "Godot + GDScript", icon: "src/Images/GDIcon.svg" },
         { name: "Github", icon: "src/Images/GithubIcon.png" },
@@ -71,56 +71,79 @@ const Carousel = () => {
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <SwiperSlide key={project.id}>
-              <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex p-4">
-                {/* Image on the left with padding */}
-                <div className="w-1/3 p-4 flex items-center justify-center">
-                  <img
+              <motion.div
+                className="bg-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col sm:flex-row p-2 sm:p-4"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: false }}
+              >
+                <div className="w-full sm:w-1/3 p-2 sm:p-4 flex items-center justify-center">
+                  <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-cover rounded-lg"
+                    className="w-full h-48 sm:h-64 object-cover rounded-lg"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
                 </div>
-
-                {/* Content on the right */}
-                <div className="w-2/3 p-4 flex flex-col justify-between">
+                <div className="w-full sm:w-2/3 p-2 sm:p-4 flex flex-col justify-between">
                   <div>
-                    {/* Title */}
-                    <h3 className="text-lg font-semibold text-zinc-50">
+                    <motion.h3
+                      className="text-lg font-semibold text-zinc-50"
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      viewport={{ once: false }}
+                    >
                       {project.title}
-                    </h3>
-                    {/* Description */}
-                    <p className="text-sm text-zinc-400 mt-2">
+                    </motion.h3>
+                    <motion.p
+                      className="text-sm text-zinc-400 mt-2"
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      viewport={{ once: false }}
+                    >
                       {project.description}
-                    </p>
-                    {/* Techstack Icons */}
+                    </motion.p>
                     <div className="mt-4">
                       <p className="text-sm text-zinc-400 mb-2">Techstack:</p>
                       <div className="flex gap-2">
                         {project.techstack.map((tech, index) => (
-                          <img
+                          <motion.img
                             key={index}
                             src={tech.icon}
                             alt={tech.name}
                             className="w-6 h-6"
-                            title={tech.name} 
+                            title={tech.name}
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            viewport={{ once: false }}
                           />
                         ))}
                       </div>
                     </div>
                   </div>
-                  {/* View Project Button */}
-                  <a
+                  <motion.a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block px-4 py-2 bg-orange-600 text-zinc-50 rounded-lg hover:bg-orange-700 transition-colors w-56"
+                    className="mt-4 inline-block px-4 py-2 bg-orange-600 text-zinc-50 rounded-lg hover:bg-orange-700 transition-colors w-full sm:w-56 text-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    viewport={{ once: true }}
                   >
                     View Project
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
