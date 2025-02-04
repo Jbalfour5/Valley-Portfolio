@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
+import Carousel from "./components/Carousel";
 
 
 //Node Modules
@@ -20,6 +21,7 @@ const App = () => {
         <Hero/>
         <About/>
         <Skills/>
+        <Carousel/>
       </motion.div>
     )
 }

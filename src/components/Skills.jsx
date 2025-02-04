@@ -14,7 +14,7 @@ const Skills = () => {
   const skillsData = [
     {
       title: "Java",
-      description: "Object-oriented programming, Spring Framework.",
+      description: "Object-oriented programming.",
       icon: <img src="src/Images/JavaIcon.png" alt="Java programming language icon" className="JavaImg" width={40} height={40} />,
       tags: ["programming", "backend", "android"],
     },
@@ -159,7 +159,7 @@ const Skills = () => {
     <section id="skills" className="py-8 bg-zinc-900">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-md font-bold text-zinc-50">Technical Skills</h2>
+          <h2 className="text-2xl font-bold text-zinc-50">Technical Skills</h2>
           <input
             type="text"
             placeholder="Search skills or tags..."
