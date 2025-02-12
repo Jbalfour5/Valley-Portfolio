@@ -5,7 +5,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Carousel from "./components/Carousel";
 import Contact from "./components/Contact";
-
+import Footer from "./components/Footer";
 
 //Node Modules
 import { motion } from "framer-motion";
@@ -23,6 +23,7 @@ const App = () => {
         <Skills/>
         <Carousel/>
         <Contact/>
+        <Footer/>
       </motion.div>
     )
 }
