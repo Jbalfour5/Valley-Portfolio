@@ -38,7 +38,9 @@ const About = () => {
             <div className="container m-auto">
                 <div className="bg-zinc-800/50 p-7 rounded-2xl md:p-12">
                     <p className="text-zinc-300 mb-4 md:mb-8 md:text-xl md:max-w-[60ch]">
-                        Welcome! I&apos;m Valley, A current Computer Systems Technology Student at British Columbia Institute of Technology. I am passionate about both creating website and creating games.
+                    Hi there! I’m Valley, a passionate and driven Computer Systems Technology student at the British Columbia Institute of Technology (BCIT). I thrive at the intersection of creativity and technology, with a strong focus on web development and game development.
+
+Whether it’s building interactive websites or crafting immersive game experiences, I love turning ideas into reality through code. My journey in tech has equipped me with a solid foundation in programming, problem-solving, and design, and I’m always eager to learn and grow in this ever-evolving field.
                     </p>
                     <div className="flex flex-wrap items-center gap-4 md:gap-7">{
                         aboutItems.map(({label, number}, key) => (
@@ -52,7 +54,7 @@ const About = () => {
                         ))
                         }
 
-                        <img src="" alt="" className="ml-auto" width={30} height={30}></img>
+                        <img src="images/New Project.png" alt="Logo" className="ml-auto" width={80} height={80}></img>
                     </div>
                 </div>
             </div>

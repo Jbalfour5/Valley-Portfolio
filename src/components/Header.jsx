@@ -34,7 +34,7 @@ const Header = () => {
           {/* Logo Section */}
           <h1>
             <a href="/" className="logo">
-              <img src=" " alt="Valley Balfour" width={40} height={40} />
+              <img src="images/New Project.png" alt="Valley Balfour" width={80} height={80} />
             </a>
           </h1>
 
