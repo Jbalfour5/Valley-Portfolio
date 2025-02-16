@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import ProjectsView from "./components/ProjectsView";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import StarsBackground from "./components/Stars";
 
 //Node Modules
 import { motion } from "framer-motion";
@@ -17,6 +18,7 @@ const App = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }} 
       >
+        <StarsBackground/>
         <Header/>
         <Hero/>
         <About/>

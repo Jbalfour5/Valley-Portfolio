@@ -15,7 +15,7 @@ const ProjectsView = () => {
       id: 1,
       title: "Flurrie's Hurry For Snowman",
       description: "Cozy Winter Jam 2025 game submission made in a team of 3. Placed 34th out of 166 submissions.",
-      image: "images/FlurryHurry.png",
+      image: "src/images/FlurryHurry.png",
       techstack: [
         { name: "Godot + GDScript", icon: "images/GDIcon.svg" },
         { name: "Github", icon: "images/GithubIcon.png" },
